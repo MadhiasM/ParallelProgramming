@@ -26,7 +26,7 @@ double CalcPi_reduction(int n) {
     double x_i;
     double pi = 0.0;
 
-    #pragma omp parallel for default(none) private(x_i) shared(n, delta_x) reduction(+:pi)
+    #pragma omp parallel for schedule(static) default(none) private(x_i) shared(n, delta_x) reduction(+:pi)
     for (int i = 0; i < n; i++) {
         x_i = i*delta_x;
         pi += (4.0f / (1 + x_i*x_i)) * delta_x;
@@ -42,9 +42,10 @@ double CalcPi_critical(int n) {
     double x_i;
     double pi = 0.0;
 
-    #pragma omp parallel for default(none) private(x_i) shared(n, delta_x) reduction(+:pi)
+    #pragma omp parallel for schedule(static) default(none) private(x_i) shared(n, delta_x, pi)
     for (int i = 0; i < n; i++) {
         x_i = i*delta_x;
+        #pragma omp critical
         pi += (4.0f / (1 + x_i*x_i)) * delta_x;
     }
     return pi;
@@ -66,6 +67,13 @@ int main() {
     accuracy = accuracy_pi(pi);
 
     printf(COLOR_BOLD "Reduction:" COLOR_OFF "\n");
+    printf("π ≈ %.10f (approximation)\n", pi);
+    printf("Accuracy = %.10f%%\n", accuracy);
+
+    pi = CalcPi_critical(N);
+    accuracy = accuracy_pi(pi);
+
+    printf(COLOR_BOLD "Critical:" COLOR_OFF "\n");
     printf("π ≈ %.10f (approximation)\n", pi);
     printf("Accuracy = %.10f%%\n", accuracy);
 

@@ -6,13 +6,13 @@
 
 double CalcPi(int n) {
     double delta_x = 1.0f / n;
-    double x_i = 0.0;
+    double x_i;
     double pi = 0.0;
 
     #pragma omp parallel for default(none) private(x_i) shared(n, delta_x) reduction(+:pi)
     for (int i = 0; i < n; i++) {
+        x_i = i*delta_x;
         pi += (4.0f / (1 + x_i*x_i)) * delta_x;
-        x_i = delta_x;
     }
     return pi;
 }

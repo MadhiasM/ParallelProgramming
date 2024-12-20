@@ -9,8 +9,9 @@ double CalcPi(int n) {
     double pi = 0.0;
     for (int i = 0; i < n; i++) {
         pi += (4.0f / (1 + x_i*x_i)) * delta_x;
-        x_i += delta_x;
-    }
+        // This approach will not work in parallel programming since it relies on all prrevious steps (lower iterations of i) have been performed
+        // However, for serial apporach, this is faster than using x_1 = i*delta_x for each iteration
+        x_i += delta_x;     }
     return pi;
 }
 

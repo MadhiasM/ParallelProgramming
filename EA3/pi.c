@@ -36,7 +36,7 @@ double CalcPi_reduction(int n) {
 
 double CalcPi_critical(int n) {
     if (n <= 0 || n > NMAX) {
-        return 0.0
+        return 0.0;
     }
     double delta_x = 1.0f / n;
     double x_i;

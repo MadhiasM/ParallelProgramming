@@ -1,0 +1,18 @@
+8 threads 
+Number of sums: 2097152
+Serial:
+π ≈ 3.1415931304
+Accuracy: 0.0000179610%
+Elapsed time: 0.01957557
+Reduction:
+π ≈ 3.1415931304
+Accuracy = 0.0000179610%
+Elapsed time: 0.00962813
+Critical:
+π ≈ 3.1415931304
+Accuracy = 0.0000179610%
+Elapsed time: 0.16523627
+Atomic:
+π ≈ 3.1415931304
+Accuracy = 0.0000179610%
+Elapsed time: 0.24029298

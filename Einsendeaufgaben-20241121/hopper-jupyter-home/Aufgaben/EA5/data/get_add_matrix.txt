@@ -1,0 +1,8 @@
+# Um die fehlenden Matrizen zu bekommen, folgendes Ausf√hren:
+wget https://suitesparse-collection-website.herokuapp.com/MM/VLSI/ss.tar.gz
+tar -xf ss.tar.gz
+mv ss/ss.mtx .
+# und 
+wget https://www.cise.ufl.edu/research/sparse/MM/Mazaheri/bundle_adj.tar.gz
+tar -xf bundle_adj.tar.gz
+mv bundle_adj/bundle_adj.mtx .

@@ -1,0 +1,4 @@
+I have 4 threads 
+n: 1024, time: 0.209564 seconds 
+n: 2048, time: 0.891238 seconds 
+n: 8192, time: 10.301017 seconds 

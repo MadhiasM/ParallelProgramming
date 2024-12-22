@@ -42,7 +42,8 @@ double* init_random_vector(int n) {
     return vector;
 }
 
-void MatrixVectorMultiplicatioByRow (double *A, double *b, double *c, int n) {
+// Fast
+void MatrixVectorMultiplication(double *A, double *b, double *c, int n) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
             double prod = A[i * n + j] * b[j];
@@ -50,15 +51,6 @@ void MatrixVectorMultiplicatioByRow (double *A, double *b, double *c, int n) {
         }
     }
 }
-void MatrixVectorMultiplicatioByColumn (double *A, double *b, double *c, int n) {
-    for (int j = 0; j < n; j++) {
-        for (int i = 0; i < n; i++) {
-            double prod = A[i * n + j] * b[j];
-            c[i] += prod;
-        }
-    }
-}
-
 
 int main() {
     // time
@@ -67,7 +59,7 @@ int main() {
     double elapsed_time;
 
     // Matrix Vector
-    int lengths[] = {1024, 8192};
+    int lengths[] = {1024, 2048, 8192};
     int length_min = 1024;
     int length_max = 8192;
 
@@ -83,22 +75,12 @@ int main() {
         t1 = clock();
         for (int l = 0; l < num_trials; l++) {
             double *c = init_empty_vector(n);
-            MatrixVectorMultiplicatioByRow(A, b, c, n);
+            MatrixVectorMultiplication (A, b, c, n);
             free(c);
         }
         t2 = clock();
         elapsed_time = (double)(t2 - t1);
         printf("Rows first, n: %d, time: %lf seconds \n", n, elapsed_time/1000000);
-
-        t1 = clock();
-        for (int m = 0; m < num_trials; m++) {
-            double *c = init_empty_vector(n);
-            MatrixVectorMultiplicatioByColumn(A, b, c, n);
-            free(c);
-        }
-        t2 = clock();
-        elapsed_time = (double)(t2 - t1);
-        printf("Columns first, n: %d, time: %lf seconds \n", n, elapsed_time/1000000);
 
         free(A);
         free(b);

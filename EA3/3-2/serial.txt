@@ -1,0 +1,3 @@
+Rows first, n: 1024, time: 0.054436 seconds 
+Rows first, n: 2048, time: 0.225270 seconds 
+Rows first, n: 8192, time: 4.372810 seconds 

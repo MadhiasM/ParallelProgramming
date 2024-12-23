@@ -1,0 +1,2 @@
+I have 4 threads 
+Time: 0.46339044

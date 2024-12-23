@@ -1,0 +1,10 @@
+I have 8 threads 
+Serial:
+Found 155610 primes
+In 1.14124258 seconds
+Parallel Static:
+Found 155610 primes
+In 0.41710670 seconds
+Parallel Dynamic:
+Found 155610 primes
+In 0.36386488 seconds
